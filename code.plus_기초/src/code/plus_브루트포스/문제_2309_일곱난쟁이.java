@@ -6,7 +6,11 @@ public class πÆ¡¶_2309_¿œ∞ˆ≥≠¿Ô¿Ã {
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		br.lines();
+		int height[] = new int[9];
+		for (int i = 0; i < height.length; i++) {
+			height[i] = br.read();
+		}
+		
 	}
 
 }
