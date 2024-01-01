@@ -10,7 +10,7 @@ public class 문제_2309_일곱난쟁이 {
 		for (int i = 0; i < height.length; i++) {
 			height[i] = br.read();
 		}
-		System.out.println();
+		System.out.println(height[1]);
 	}
 
 }
