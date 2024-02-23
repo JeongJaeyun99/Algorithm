@@ -2,22 +2,17 @@ package section_two;
 
 import java.util.Scanner;
 
-public class Exam_05 {
- // 시간초과로 실패...
+public class Exam_05_teacher {
+	// 에라토스테네스 체
 	public static int solution(int n) {
-		int cnt = 1;
-		for (int i = 3; i <= n; i+=2) {
-			int temp = 0;
-			for (int j = 1; j <= i; j++) {
-				if(i % j == 0) {
-					temp++;
-				}
-				if(temp > 2) {
-					break;
-				}
-			}
-			if(temp == 2) {
+		int cnt = 0;
+		int arr[] = new int[n+1];
+		for (int i = 2; i < arr.length; i++) {
+			if(arr[i] == 0) {
 				cnt++;
+				for (int j = i; j <= n; j+=i) {
+					arr[j] = 1;
+				}
 			}
 		}
 		return cnt;
