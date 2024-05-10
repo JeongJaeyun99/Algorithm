@@ -6,19 +6,15 @@ public class Exam_11_twice {
 
 	public static String solution(String str) {
 		String answer = "";
-		answer += str.charAt(0);
+		str = str + " ";
 		int count = 1;
-		for (int i = 1; i < str.length(); i++) {
-			if(answer.contains(str.charAt(i) + "")) {
-				count++;
+		for (int i = 0; i < str.length()-1; i++) {
+			if(str.charAt(i) == str.charAt(i+1)) {
+					count++;
 			}else {
-				if(count <= 1) {
-					answer += str.charAt(i);					
-				}else {
-					answer += (count-1);
-					answer += str.charAt(i);
-					count = 1;					
-				}
+				answer += str.charAt(i);
+				if(count > 1) answer += count;
+				count = 1;
 			}
 		}
 		return answer;
