@@ -1,20 +1,22 @@
 package section_three;
 
-import java.util.Scanner;
+import java.util.*;
 
-public class Exam_06 {
+public class Exam_04_twice {
 
 	public static int solution(int n, int m, int arr[]) {
 		int answer = 0;
-		int lt = 0;
-		int cnt = 0;
-		for (int rt = 0; rt < n; rt++) {
-			if(arr[rt] == 0) cnt++;
-			while (cnt > m) {
-				if(arr[lt] == 0) cnt--;
-				lt++;
+		for (int i = 0; i < arr.length; i++) {
+			int temp = 0;
+			for (int j = i; j < arr.length; j++) {
+				temp += arr[j];
+				if(temp == m) {
+					answer++;
+					break;
+				}else if(temp > m){
+					break;
+				}
 			}
-			answer = Math.max(answer, rt-lt+1);
 		}
 		return answer;
 	}
