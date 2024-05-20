@@ -6,12 +6,19 @@ import java.util.Scanner;
 public class Exam_02 {
 	
 	public static String solution(String s1, String s2) {
-		String answer = "";
+		String answer = "YES";
 		int temp = 0;
-		HashMap<String, Integer> map1 = new HashMap<String, Integer>();
-		HashMap<String, Integer> map2 = new HashMap<String, Integer>();
-		for (int i = 0; i < s1.length(); i++) {
-			map1.put(s1.charAt(i)+"" , map1.getOrDefault(s1.charAt(i)+ "", 0) + 1);
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for (char x : s1.toCharArray()) {
+			map.put(x , map.getOrDefault(x , 0) + 1);
+		}
+		for(char x : s2.toCharArray()) {
+			if(!map.containsKey(x) || map.get(x) == 0) {
+				return "NO";
+			}else {
+				map.put(x , map.get(x)-1);
+			}
+				
 		}
 		return answer;
 	}
