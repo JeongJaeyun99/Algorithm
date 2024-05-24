@@ -4,25 +4,29 @@ import java.util.*;
 
 public class Exam_05 {
 
-	public static int solution(int n, int k) {
+	public static int solution(String s) {
 		int answer = 0;
-		Queue<Integer> q = new LinkedList<Integer>();
-		for (int i = 1; i <= n; i++) q.offer(i);
-		while (!q.isEmpty()) {
-			for (int j = 1; j < k; j++) q.offer(q.poll());
-			q.poll();
-			if(q.size() == 1) {
-				answer = q.poll();
+		Stack<String> stack = new Stack<String>();
+		for (int i = 0; i < s.length(); i++) {
+			if((s.charAt(i) + "").equals(")")) {
+				if((s.charAt(i-1) + "").equals("(")) {
+					stack.pop();
+					answer += stack.size();
+				}else {
+					stack.pop();
+					answer++;
+				}
+			}else {
+				stack.add(s.charAt(i) + "");
 			}
 		}
 		return answer;
 	}
-
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int k = sc.nextInt();
-		System.out.print(solution(n, k));
+		String s = sc.next();
+		System.out.print(solution(s));
 	}
 
 }
