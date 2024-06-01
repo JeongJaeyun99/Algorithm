@@ -3,14 +3,14 @@ package section_seven;
 import java.util.*;
 // 이진트리 _ DFS
 
-class Node{
-	int data;
-	Node lt,rt;
-	public Node(int val) {
-		data = val;
-		lt = rt = null;
-	}
-}
+//class Node{
+//	int data;
+//	Node lt,rt;
+//	public Node(int val) {
+//		data = val;
+//		lt = rt = null;
+//	}
+//}
 
 public class 이진트리_DFS {
 	Node root;
