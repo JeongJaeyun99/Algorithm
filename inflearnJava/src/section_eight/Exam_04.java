@@ -1,0 +1,32 @@
+package section_eight;
+
+import java.util.*;
+
+public class Exam_04 {
+
+	static int answer[];
+	static int n, m = 0;
+
+	public static void DFS(int L) {
+		if (L == m) {
+			for (int i : answer) {
+				System.out.print(i + " ");
+			}
+			System.out.println();
+		} else {
+			for (int i = 1; i <= n; i++) {
+				answer[L] = i;
+				DFS(L + 1);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		m = sc.nextInt();
+		answer = new int[m];
+		DFS(0);
+	}
+
+}
