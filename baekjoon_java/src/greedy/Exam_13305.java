@@ -7,15 +7,30 @@ public class Exam_13305 {
 	
 	static int distance[];
 	static int price[];
-	static int answer = Integer.MAX_VALUE;
+	static long answer = 0;
 	static int disSum;
 	
-	public static void solution(int L,int dis,int sum) {
-		if(dis == disSum) {
-			answer = Math.min(answer, sum);
-			return;
-		}else {
-			solution(L+1,dis+distance[L],sum+(distance[L] * price[L]));
+	public static void solution() {
+		int minPrice = Integer.MAX_VALUE;
+		for (int i = 0; i < price.length-1; i++) {
+			if(minPrice > price[i]) minPrice = price[i];
+		}
+		if(minPrice == price[0]) answer = price[0] * disSum;
+		else {
+			answer += price[0] * distance[0];
+			disSum -= distance[0];
+			for (int i = 1; i < distance.length; i++) {
+				for (int j = i; j < price.length-1; j++) {
+					if(minPrice > price[j]) minPrice = price[j];
+				}
+				if(price[i] == minPrice) {
+					answer += price[i] * disSum;
+					break;
+				}else {
+					answer += price[i] * distance[i];
+					disSum -= distance[i];
+				}
+			}
 		}
 	}
 	
@@ -31,7 +46,7 @@ public class Exam_13305 {
 		for (int i = 0; i < price.length; i++) {
 			price[i] = sc.nextInt();
 		}
-		solution(0,0,0);
+		solution();
 		System.out.println(answer);
 	}
 
