@@ -3,47 +3,30 @@ package level_3;
 import java.io.*;
 
 public class Exam_2579 {
-	static int one[];
-	static int two[];
+	static int stair[];
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		one = new int[n+1];
-		two = new int[n+1];
-		int arr[] = new int[n];
-		for (int i = 0; i < n; i++) {
-			arr[i] = Integer.parseInt(br.readLine());
+		stair = new int[n+1];
+		for (int i=1; i<=n; i++) {
+			stair[i] = Integer.parseInt(br.readLine());
 		}
-		int ch1 = 0;
-		for (int i = 1; i < one.length; i++) {
-			if(ch1 == 2) {
-				ch1 = 1;
-				if(i == n) {
-					one[i] = one[i-1] + arr[n-1];
-				}else {
-					one[i] = one[i-1];
-				}
-			}else {
-				one[i] = arr[i-1] + one[i-1];
-				ch1++;
-			}
+		
+		//dp : 각 단계별 최댓값
+		int[] dp = new int[n+1];
+		
+		dp[1] = stair[1];
+		if (n>=2) {
+			dp[2] = stair[1] + stair[2];
 		}
-		int ch2 = 0;
-		for (int i = 2; i < two.length; i++) {
-			if(ch2 == 2) {
-				ch2 = 1;
-				if(i == n) {
-					two[i] = two[i-1] + arr[n-1];
-				}else {
-					two[i] = two[i-1];
-				}
-			}else {
-				two[i] = arr[i-1] + two[i-1];
-				ch2++;
-			}
+		
+		//dp[i-1]과 비교를 하면 중간에 2개 이상 비어있는 단계가 발생할 수 있다.
+		//마지막 1칸전에는 2칸연속이 올 수 없다.
+		
+		for (int i=3; i<=n; i++) {
+			dp[i] = Math.max(dp[i-3] + stair[i-1] + stair[i], dp[i-2] + stair[i]);
 		}
-		if(one[n] > two[n]) System.out.println(one[n]);
-		else System.out.println(two[n]);
+		System.out.println(dp[n]);
 	}
 
 }
