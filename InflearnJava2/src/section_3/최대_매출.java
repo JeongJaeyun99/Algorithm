@@ -1,4 +1,4 @@
-package section_2;
+package section_3;
 
 import java.util.Scanner;
 
