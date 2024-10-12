@@ -6,10 +6,14 @@ public class 중복_확인 {
 	
 	public static String solution(int a, int arr[]) {
 		String answer = "";
-		int tmp[] = arr.clone();
-		Arrays.sort(tmp);
+		HashSet<Integer> set = new HashSet<>();
 		for (int i = 0; i < arr.length; i++) {
-			if(arr[i] != tmp[i]) answer += (i+1) + " ";
+			set.add(arr[i]);
+		}
+		if(arr.length == set.size()) {
+			answer = "U";
+		}else {
+			answer = "D";
 		}
 		return answer;
 	}

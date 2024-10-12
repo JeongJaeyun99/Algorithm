@@ -6,14 +6,10 @@ public class 장난꾸러기 {
 	
 	public static String solution(int a, int arr[]) {
 		String answer = "";
-		HashSet<Integer> set = new HashSet<>();
+		int tmp[] = arr.clone();
+		Arrays.sort(tmp);
 		for (int i = 0; i < arr.length; i++) {
-			set.add(arr[i]);
-		}
-		if(arr.length == set.size()) {
-			answer = "U";
-		}else {
-			answer = "D";
+			if(arr[i] != tmp[i]) answer += (i+1) + " ";
 		}
 		return answer;
 	}
