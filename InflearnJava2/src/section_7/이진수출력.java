@@ -2,15 +2,15 @@ package section_7;
 
 import java.util.*;
 
-public class 재귀함수 {
+public class 이진수출력 {
 	
 	public static void DFS(int a) {
 		if(a == 0) {
 			return;
 		}
 		else {
-			DFS(a-1);
-			System.out.print(a + " ");
+			DFS(a/2);
+			System.out.print(a%2 + " ");
 		}
 	}
 	
