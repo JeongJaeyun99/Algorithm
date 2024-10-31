@@ -1,55 +1,63 @@
 package section_8;
 
 import java.util.*;
-
-class Tomato_point{
-	public int x,y;
-	Tomato_point(int x,int y){
-		this.x = x;
-		this.y = y;
+class Tomato_Point{
+	public int x, y;
+	Tomato_Point(int x, int y){
+		this.x=x;
+		this.y=y;
 	}
 }
-
-public class 토마토 {
-	
-	static int [][] board,dis;
-	static int directX[] = {-1,1,0,0}; // 상하좌우
-	static int directY[] = {0,0,-1,1};
-	static int n,m;
-	static Scanner sc = new Scanner(System.in);
-	static int answer = 0;
-			
-	public static void BFS() {
-		Queue<Tomato_point> q = new LinkedList<>();
-		for (int i = 1; i < board.length; i++) {
-			for (int j = 1; j < board[i].length; j++) {
-				board[i][j] = sc.nextInt();
-				if(board[i][j] == 1) {
-					q.offer(new Tomato_point(i,j));
+class 토마토 {
+	static int[] dx={-1, 0, 1, 0};
+	static int[] dy={0, 1, 0, -1};
+	static int[][] board, dis;
+	static int n, m;
+	static Queue<Tomato_Point> Q=new LinkedList<>();
+	public void BFS(){
+		while(!Q.isEmpty()){
+			Tomato_Point tmp=Q.poll();
+			for(int i=0; i<4; i++){
+				int nx=tmp.x+dx[i];
+				int ny=tmp.y+dy[i];
+				if(nx>=0 && nx<n && ny>=0 && ny<m && board[nx][ny]==0){
+					board[nx][ny]=1;
+					Q.offer(new Tomato_Point(nx, ny));
+					dis[nx][ny]=dis[tmp.x][tmp.y]+1;
 				}
 			}
-		}
-		while(!q.isEmpty()) {
-			System.out.println(q.size());
-			Tomato_point tmp = q.poll();
-			for (int i = 0; i < 4; i++) {
-				int nx = tmp.x + directX[i];
-				int ny = tmp.y + directY[i];
-				if(nx >= 1 && nx <= n && ny >= 1 && ny <= m && board[tmp.x][tmp.y] == 1 && board[nx][ny] == 0) {
-					board[nx][ny] = 1; 
-					q.offer(new Tomato_point(nx,ny));
-					System.out.println(tmp.x + " " + tmp.y);
-				} // 코드 완성시키기
-			}
-		}
-	}
-	
-	public static void main(String[] args) {
-		n = sc.nextInt();
-		m = sc.nextInt();
-		board = new int[m+1][n+1];
-		BFS();
-		System.out.println(answer);
+		}	
 	}
 
+	public static void main(String[] args){
+		토마토 T = new 토마토();
+		Scanner kb = new Scanner(System.in);
+		m=kb.nextInt();
+		n=kb.nextInt();
+		board=new int[n][m];
+		dis=new int[n][m];
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				board[i][j]=kb.nextInt();
+				if(board[i][j]==1) Q.offer(new Tomato_Point(i, j));
+			}
+		}
+		T.BFS();
+		boolean flag=true;
+		int answer=Integer.MIN_VALUE;
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				if(board[i][j]==0) flag=false;
+			}
+		}
+		if(flag){
+			for(int i=0; i<n; i++){
+				for(int j=0; j<m; j++){
+					answer=Math.max(answer, dis[i][j]);
+				}
+			}
+			System.out.println(answer);
+		}
+		else System.out.println(-1);
+	}
 }
