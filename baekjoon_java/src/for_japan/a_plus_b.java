@@ -5,6 +5,7 @@ import java.io.*;
 
 public class a_plus_b {
     public static void main(String[] args) throws IOException{
+        Scanner sc = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int arr[] = new int[n];
