@@ -29,15 +29,12 @@ public class bunsu_hap {
         a_up *= (gongbesu  / a_down);
         b_up *= (gongbesu  / b_down);
         int a_b_up = a_up + b_up;
-        if(a_b_up / gongbesu != 0){
-            int temp = a_b_up;
-            a_b_up = a_b_up / gongbesu;
-            gongbesu = gongbesu / (temp % gongbesu);
-        }else if(gongbesu / a_b_up  != 0){
-            int temp = a_b_up;
-            a_b_up = a_b_up / gongbesu;
-            gongbesu = gongbesu / (temp % gongbesu);
+        int seond = 0;
+        if(a_b_up < gongbesu){
+            seond = eu(gongbesu,a_b_up);
+        }else{
+            seond = eu(a_b_up,gongbesu);
         }
-        System.out.println(a_b_up + " " + gongbesu);
+        System.out.println(a_b_up/seond + " " + gongbesu/seond);
     }
 }
